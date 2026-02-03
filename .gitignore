@@ -1,0 +1,10 @@
+# --- Ignorar venv en cualquier lugar ---
+**/venv/
+**/__pycache__/
+**/*.db
+
+# --- Ignorar node_modules en cualquier lugar ---
+**/node_modules/
+**/dist/
+**/.env
+.env

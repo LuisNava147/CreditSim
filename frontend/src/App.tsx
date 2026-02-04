@@ -1,7 +1,10 @@
-import { use, useState } from 'react'
+import { useState } from 'react'
 
 import './App.css'
-import { AmortizationRow, type LoanFormData } from './entities'
+import type { AmortizationRow, LoanFormData } from './entities'
+import { API_URL } from './constants'
+import CreditForm from './_components/CreditForm'
+import ResultTable from './_components/ResultTable'
 
 function App() {
   const [result, setResult] = useState<AmortizationRow[]>([])
@@ -12,6 +15,39 @@ function App() {
     setLoading(true)
     setError(null)
     setResult([])
-  }
+  
+ 
+  try{
+    const response = await fetch(`${API_URL}/simulate`,{
+      method:"POST",
+      headers:{
+        'Content-Type':'application/json'
+      },
+      body: JSON.stringify(formData)
+    })
+    
+    if(!response.ok) throw new Error('Error en el servidor')
 
+    const data: AmortizationRow[] = await response.json()
+    setResult(data)
+  }catch(err){
+    setError("Error al conectar con el servidor")
+  }finally{
+    setLoading(false)
+  }
+  }
+  return(
+    <>
+    <div className='container'>
+      <h1>CreditSim</h1>
+      <p>Simulador profesional</p>
+    </div>
+    <CreditForm onSubmit={handleSimulate} loading={loading} />
+    {error && <p className='error'>{error}</p>}
+    <ResultTable data={result}/>
+    </>
+  )
+    
 }
+
+export default App

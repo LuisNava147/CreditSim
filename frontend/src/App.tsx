@@ -1,10 +1,9 @@
 import { useState } from 'react'
-
 import './App.css'
 import type { AmortizationRow, LoanFormData } from './entities'
 import { API_URL } from './constants'
-import CreditForm from './_components/CreditForm'
-import ResultTable from './_components/ResultTable'
+import CreditForm from './components/CreditForm'
+import ResultTable from './components/ResultTable'
 
 function App() {
   const [result, setResult] = useState<AmortizationRow[]>([])

@@ -24,6 +24,8 @@ export default function ResultTable({data}:Props){
                 <tbody>
                     {data.map((fila) => (
                         <tr key={fila.mes}>
+                            
+                            <td>{fila.mes}</td>
                             <td>${fila.cuota.toFixed(2)}</td>
                             <td>${fila.interes.toFixed(2)}</td>
                             <td>${fila.capital.toFixed(2)}</td>

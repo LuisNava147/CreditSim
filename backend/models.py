@@ -5,7 +5,7 @@ from database import Base
 class SimulationLog(Base):
     __tablename__ = "simulations"
 
-    id:Column(Integer, primary_key= True, index= True)
+    id = Column(Integer, primary_key= True, index= True)
     monto = Column(Float, nullable= False)
     tasa_anual = Column(Float, nullable= False)
     plazo_meses = Column(Integer, nullable = False)

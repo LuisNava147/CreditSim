@@ -35,14 +35,22 @@ function App() {
   }finally{
     setLoading(false)
   }
+}
+
+//Borra la tabla si el usuario toca el formulario
+const handleFormChange = () => {
+  if(result.length > 0){
+    //setResult hace que se borre la tabla vieja
+    setResult([])
   }
+}
   return(
     <>
     <div className='container'>
       <h1>CreditSim</h1>
       <p>Simulador profesional</p>
     </div>
-    <CreditForm onSubmit={handleSimulate} loading={loading} />
+    <CreditForm onSubmit={handleSimulate} loading={loading} onFieldsChange={handleFormChange}/>
     {error && <p className='error'>{error}</p>}
     <ResultTable data={result}/>
     </>

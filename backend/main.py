@@ -10,6 +10,13 @@ models.Base.metadata.create_all(bind= engine)
 
 app = FastAPI(title="CreditSim")
 
+#lista de origenes para permitir conexiones
+origins = [
+    "http://localhost:5173",
+    "https://creditsim-bg96.onrender.com",
+    "*"
+]
+
 #configuración de CORS para permitir la conexión con React
 app.add_middleware(
     CORSMiddleware,
